@@ -1,0 +1,131 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)http://www.securiteinfo.com/attaques/divers/steganographie.shtml -->
+<HTML><HEAD><TITLE>La stéganographie</TITLE>
+<META content="Arnaud Jacques" name=author>
+<META content=index,follow name=robots>
+<META http-equiv=Content-Type content=text/html;charset=iso-8859-1>
+<META content="MSHTML 5.50.4134.100" name=GENERATOR>
+<META content="Social Engineering" name=description>
+<META content=http://www.securiteinfo.com name=Identifier-URL>
+<META content=mailto:info@securiteinfo.com name=Reply-to>
+<META content="Arnaud Jacques" name=Publisher>
+<META content="Copyright (c) Arnaud Jacques" name=Copyright>
+<META content="french, fr" name=language>
+<META lang=fr 
+content=stéganographie,steganographie,steganography,hide,bmp,gif,image,cache,wav 
+name=keywords><LINK title=Style href="La stéganographie_fichiers/stylesheet.css" 
+type=text/css rel=stylesheet></HEAD>
+<BODY text=#000000 vLink=#3030ff link=#9090ff bgColor=#ffffff>
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><A href="http://www.securiteinfo.com/"><IMG height=65 
+      alt=Securiteinfo.com src="La stéganographie_fichiers/btntitre.gif" 
+      width=320 border=0></A> <FONT id=TextePetit>
+      <CENTER><I>La Sécurité Informatique - La Sécurité des 
+      Informations.</I></CENTER></FONT></TD>
+    <TD align=right width="100%"><!-- RECHERCHE --><FONT 
+      id=SousTitre1Doc>Recherche sur le site</FONT><BR><BR>
+      <FORM action=http://search.atomz.com/search/ method=get><INPUT size=15 
+      name=sp-q> <INPUT type=submit value=Chercher> <INPUT type=hidden 
+      value=sp1000b0c8 name=sp-a> </FORM>
+      <CENTER></CENTER></TD>
+    <TD align=top>
+      <TABLE cellSpacing=1>
+        <TBODY>
+        <TR>
+          <TD><A target=_blank href="http://www.job-internet.com/"><IMG 
+            src="La stéganographie_fichiers/btn-job-internet.gif"></A> 
+        <TR>
+          <TD><!--- Code à insérer CibleClick : PriceMinister ---><A 
+            href="http://www.cibleclick.com/cibles/clicks/symp.cfm?site_id=499709188&amp;friend_id=912697363&amp;banniere_id=1989"><IMG 
+            alt="" src="La stéganographie_fichiers/logo100-24.gif" border=0> 
+</A><!--- fin du Code à insérer CibleClick : PriceMinister --->
+        <TR>
+          <TD><!--- Code à insérer CibleClick : Ka2Games ---><A 
+            href="http://www.cibleclick.com/cibles/clicks/symp.cfm?site_id=210551848&amp;friend_id=912697363&amp;banniere_id=1909"><IMG 
+            alt="" src="La stéganographie_fichiers/banniere04.gif" border=0> 
+</A><!--- fin du Code à insérer CibleClick : Ka2Games ---></TR></TBODY></TABLE></TD>
+    <TD align=top><A 
+      href="http://translate.google.com/translate_c?u=http%3A%2F%2Fwww.securiteinfo.com&amp;langpair=fr%7Cen&amp;hl=fr&amp;prev=%2Flanguage_tools"><IMG 
+      alt=Translate src="La stéganographie_fichiers/gb.gif">&nbsp;<IMG 
+      alt=Translate src="La stéganographie_fichiers/us.gif"></A><BR><A 
+      href="http://translate.google.com/translate_c?u=http%3A%2F%2Fwww.securiteinfo.com&amp;langpair=fr%7Cde&amp;hl=fr&amp;prev=%2Flanguage_tools"><IMG 
+      alt=Übersetzung src="La stéganographie_fichiers/de.gif"></A> 
+</TD></TR></TBODY></TABLE>
+<CENTER><FONT id=TexteCadre>[ <A 
+href="http://www.securiteinfo.com/wwwboard/index.html">Forum 
+Securiteinfo.com</A> | <A 
+href="http://www.securiteinfo.com/attaques/hacking/challengeshacking.shtml">Les 
+challenges de Hacking</A> | <A 
+href="mailto:webmaster@securiteinfo.com">Contactez nous</A> ] </CENTER></FONT><!--  ULTIMATE DROPDOWN MENU v3.1 by Brothercake  --><!--  http://www.brothercake.com/dropdown/  -->
+<SCRIPT language=javascript 
+src="La stéganographie_fichiers/sniffer.js"></SCRIPT>
+
+<SCRIPT language=javascript1.2 
+src="La stéganographie_fichiers/custom.js"></SCRIPT>
+
+<SCRIPT language=javascript1.2 
+src="La stéganographie_fichiers/style.js"></SCRIPT>
+
+<SCRIPT language=javascript1.2 
+src="La stéganographie_fichiers/menu.js"></SCRIPT>
+<BR><BR><BR>
+<CENTER>
+<TABLE cellPadding=10>
+  <TBODY>
+  <TR bgColor=#2961ce>
+    <TD><FONT id=TitreDoc>La stéganographie 
+</FONT></TD></TR></TBODY></TABLE></CENTER><BR><BR>
+<DIV align=justify><FONT id=SousTitre1Doc><BR>Qu'est-ce que c'est ?<BR><BR><FONT 
+id=TexteNormal>La stéganographie, c'est l'art de dissimuler des données dans 
+d'autres données. Il existe plusieurs techniques différentes qui permettent ce 
+"tour de magie". <BR><BR>La stéganographie existe depuis longtemps, bien avant 
+l'invention de l'ordinateur. En voilà un exemple frappant : <BR><BR>Ceci est une 
+lettre envoyée par <B>George Sand</B> à <B>Alfred de Musset</B> : <BR><BR>
+<UL>Je suis très émue de vous dire que j'ai<BR>bien compris, l'autre jour, que 
+  vous avez<BR>toujours une envie folle de me faire<BR>danser. Je garde un 
+  souvenir de votre<BR>baiser et je voudrais que ce soit<BR>là une preuve que je 
+  puisse être aimée<BR>par vous. Je suis prête à vous montrer mon<BR>Affection 
+  toute désintéressée et sans cal-<BR>cul. Si vous voulez me voir 
+  ainsi<BR>dévoiler, sans aucun artifice mon âme<BR>toute nue, daignez donc me 
+  faire une visite<BR>Et nous causerons en amis et en chemin.<BR>Je vous 
+  prouverai que je suis la femme<BR>sincère capable de vous offrir 
+  l'affection<BR>la plus profonde et la plus étroite<BR>Amitié, en un mot, la 
+  meilleure amie<BR>que vous puissiez rêver. Puisque votre<BR>âme est libre, 
+  alors que l'abandon où je<BR>vis est bien long, bien dur et bien 
+  souvent<BR>pénible, ami très cher, j'ai le coeur<BR>gros, accourez vite et 
+  venez me le<BR>fait oublier. À l'amour, je veux me sou-<BR>mettre. </UL><BR>A 
+priori, si vous n'avez pas compris que cette lettre en cache une autre, c'est 
+beau, plein de poésie... Maintenant, lisez la première ligne et ensuite une 
+ligne sur deux... <BR><BR><B>Alfred de Musset</B> a répondu ceci : <BR><BR>
+<UL>Quand je vous jure, hélàs, un éternel hommage<BR>Voulez-vous qu'un instant 
+  je change de language<BR>Que ne puis-je, avec vous, goûter le vrai 
+  bonheur<BR>Je vous aime, ô ma belle, et ma plume en délire<BR>Couche sur le 
+  papier ce que je n'ose dire<BR>Avec soin, de mes vers, lisez le premier 
+  mot<BR>Vous saurez quel remède apporter à mes maux.<BR></UL><BR>De la même 
+manière <B>George Sand</B> a répondu ceci : <BR><BR>
+<UL>Cette grande faveur que votre ardeur réclame<BR>Nuit peut-être à l'honneur 
+  mais répond à ma flamme.<BR></UL><BR>Maintenant, je pense que vous avez compris 
+ce qu'est la stéganographie... <BR><BR>Avec l'avènement de l'ordinateur et de 
+son règne du "tout numérique", des techniques existent pour cacher n'importe 
+quel document dans un autre document. <BR><FONT id=SousTitre1Doc><BR>Comment 
+est-ce possible ?<BR><BR><FONT id=TexteNormal>Les documents "porteurs" sont 
+généralement des images (BMP,GIF...) ou des sons (WAV...). Nous allons voir 
+comment il est possible de cacher un document dans une image RVB. Pour cela nous 
+allons faire un bref rappel de ce qu'est une structure d'image. <BR><BR>Le pixel 
+: <BR>Un pixel est constinué de 3 octets : un octet pour la composante rouge, un 
+octet pour la composante verte et un octet pour la composante bleue. C'est pour 
+cela que l'on parle de RVB (Rouge Vert Bleu). A partir de ces trois octets, on 
+peut donc avoir 256*256*256 = 16777216 couleurs différentes, ce qui est 
+largement plus que ne peut distinguer l'oeil humain. <BR><BR>L'image : 
+<BR>L'image n'est ni plus ni moins que le stockage dans un fichier de tous les 
+pixels RVB composant l'image finale. <BR><BR>Cacher le document : <BR>L'astuce 
+est de retirer un bit à chaque octet RVB qui compose chaque pixel de l'image. En 
+effet, en retirant 1 bit, on dégrade l'image, mais ce n'est pas visible à l'oeil 
+nu...<BR>De ce fait, on peut récupérer ce bit à chaque fois et l'utiliser pour 
+stocker les données que l'on souhaite. Nous récupérons donc 1/8e de la taille de 
+l'image pour cacher un document, quel qu'il soit. <BR><BR>
+<CENTER><A href="http://www.securiteinfo.com/">Retour à la page principale</A> 
+</CENTER><BR><BR></FONT></FONT></FONT></FONT></DIV></BODY></HTML>

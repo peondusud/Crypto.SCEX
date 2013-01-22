@@ -1,0 +1,35 @@
+The  information  in  this man page is an extract from the
+full documentation of the GNU C compiler, and  is  limited
+to the meaning of the options.
+This  man  page  is not kept up to date except when volun­
+teers want to maintain it.   If  you  find  a  discrepancy
+between  the  man  page and the software, please check the
+Info file, which is the authoritative documentation.
+If we find that the things in this man page that  are  out
+of date cause significant confusion or complaints, we will
+stop distributing the man page.  The alternative, updating
+the  man  page when we update the Info file, is impossible
+because the rest of the work of maintaining GNU CC  leaves
+us no time for that.  The GNU project regards man pages as
+obsolete and should not let them take time away from other
+things.
+For  complete and current documentation, refer to the Info
+file gcc or the manual.
+The C and C++  compilers  are  integrated.   Both  process
+input  files  through  one or more of four stages: prepro­
+cessing, compilation, assembly, and linking.  Source file­
+name suffixes identify the source language, but which name
+you use for the compiler governs default assumptions:
+gcc assumes preprocessed (.i) files are C and assumes C
+style linking. g++ assumes preprocessed (.i) files are C++ 
+and assumes C++ style linking. Suffixes of source file 
+names indicate  the  language  and kind of processing to be 
+done:
+       .c C source; preprocess, compile, assemble
+       .C C++ source; preprocess, compile, assemble
+       .cc C++ source; preprocess, compile, assemble
+       .cxx C++ source; preprocess, compile, assemble
+       .m Objective-C source; preprocess, compile, assemble
+       .i preprocessed C; compile, assemble
+       .ii preprocessed C++; compile, assemble
+GNU Tools                   1999/06/02                          1

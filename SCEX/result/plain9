@@ -1,0 +1,76 @@
+Introduction à W32Dasm8x:
+Tout d'abord, je vais vous expliquer ce qu'est W32Dasm, à quoi il sert
+et quelles sont ses principales options!
+W32Dasm est un désassembleur! Il permet de désassembler n'importe quel
+fichier de type EXE, DLL, OCX ... pour obtenir son équivalent
+en asm!
+A quoi bon ? hehe ce genre de programme vous permettra de cracker
+qq jeux, de s'enregistrer dans vos programmes et encore des tas d'autres
+choses !!!
+Utilisation:
+Après avoir dézippé W32Dasm dans un répertoire, il vous faudra configurer
+la fonte car celle qui est par défaut n'est pas lisible, lol :)
+Car quand vous allez l'utiliser pour la première fois, vous verrez des signes
+tout à fait bizarres et qui ne veulent rien dire !!
+Normal ! La fonte par défaut est : widings ou qq chose comme ça.
+Changez la en : Times new roman par exemple, et vous pourrez enfin comprendre
+ce que W32Dasm vous montrera après avoir désassemblé !
+Changement de fonte: lancez W32Dasm, dans le menu désassembler choisissez Font.
+et ensuite select Font! et là vous pouvez faire votre choix!!!
+Les différents menus:
+Dans Disassembler:  Open file to disassemble
+C'est avec ce menu que vous choisissez le fichier à désassembler!
+Ouvrez le fichier Calc.exe présent dans le répertoire de Windows pour essayer
+par exemple!
+Après avoir désassemblé, vous pouvez sauvegarder ce fichier pour pouvoir
+le réouvrir ultérieurement !! (désassembler de gros fichiers peut être parfois
+TRES long !! d'où l'intérêt de sauver le fichier !)
+Pour cela, allez dans le menu "Save disassembly Text files.." de Disassembler.
+Juste à côté de ce menu vous pouvez voir "Project"!
+Ceci sert à ouvrir les fichiers sauvegardés précédemment !
+Je ne vais pas m'attarder sur la description de W32Dasm, car il est fourni
+avec une aide super !!! décrivant avec précision les différentes commandes!
+Pour finir cette brève description des menus, je vais vous décrire le menu
+Refs!
+Alors celui-là !! c'est le menu le plus utilisé dans W32Dasm !!
+Après avoir clické dessus, vous devez apercevoir 3 sous-menus,
+je ne vous parlerai pour l'instant que de:
+String Data References!
+Kesako çà ? C'est en fait une liste de tout les messages rencontrés dans le
+programme disassembler!
+Il vous servira notamment pour les jeux avec des messages du genre:
+"Please insert your CD" ou encore les autres names / serials:
+"the serial you entered is not Valid!" ....
+L'utilisation sera détaillée dans la suite de ce cours !
+Quelques astuces en vrac:
+Pour copier-coller dans W32Dasm, il suffit de clicker sur le début de la ligne
+à copier (un point rouge doit apparaître) et ensuite appuyez sur la touche
+Shift. Maintenant allez sur la dernière ligne à copier, et vous verrez que
+toutes les lignes entre les 2 points que vous avez sélectionnés contiennent
+des points rouges !!
+Cela signifie que vous pouvez maintenant copier-coller le texte qui est 
+sélectionné!
+Ctrl+C = copie le texte
+Ctrl+V = colle le texte
+L'intérêt de ceci est que vous pouvez découper des bouts de codes et 
+les introduire dans vos tuts, ou Keygens :))
+Patcher les protections avec Registrations
+Nous allons voir ici l'utilisation de W32Dasm pour patcher les protections
+par serials !!
+Théorie:
+Dans de nombreux sharewares, vous rencontrez des protections par name / serials
+et les programmes souvent pas très malin vous mettent un msg disant que le 
+serial entre n'est pas bon !! qd vous avez rentré une connerie!
+Appelons X le programme protégé par name serial.
+Lancez X, et allez là où vous pouvez entrer un nom et un code d'enregistrement.
+Entrez votre nom et un serial à la con style: 112233 et clickez sur le bouton
+permettant de vérifier le serial style "OK" et vous verrez le message à la con
+vous disant: "le serial que vous avez entré n'est pas valide"
+Hehehehe, déjà si vous voyez çà vous pouvez vous dire que c'est bien parti !
+Alors ouvrez W32Dasm et sélectionnez le fichier exécutable du programme à cracker
+comme je vous ai montré dans la partie d'avant !!
+Maintenant allez jeter un oeuil dans les String Data References et vous n'avez
+plus qu'à chercher le message d'erreur rencontré lors du mauvais serial !!
+Sans tarder vous le trouvez dans la liste des messages !!
+Double-cliquez dessus et vous atterrissez à l'endroit dans le programme où
+s'effectue le test.

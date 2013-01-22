@@ -1,0 +1,974 @@
+<!-- HTML -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Commande</title>
+<meta name="robots" content="follow,index,all">
+<meta name="REVISIT-AFTER" content="7 days">
+
+<!-- STYLE -->
+<link rel="StyleSheet" href="/src/styles.css" type="text/css">
+<link rel="StyleSheet" href="/src/homepage.css" type="text/css">
+<link rel="StyleSheet" href="/src/styletab.css" type="text/css">
+<style type="text/css">
+<!--
+body {background-image: url(/img/frbgsais_avv.gif); background-repeat: repeat-x}
+form {margin: 0; padding: 0;}
+-->
+</style>
+
+<!-- JAVASCRIPT -->
+<script language="Javascript"> type="text/javascript"
+
+var rubriqueLogin=false;
+
+function closeWin()
+//pour fermer la popup si l'url de la fenetre principale change
+{
+	if (rubriqueLogin && !rubriqueLogin.closed) { 
+		rubriqueLogin.fermerFenetre();
+	}
+}
+var da=(document.all) ? 1:0;
+var pr=(window.print) ? 1:0;
+var mac=(navigator.userAgent.indexOf("Mac") != -1);
+window.focus();
+
+function printpage()
+{
+	if(pr)
+		window.print()
+	else if (da && !mac)
+		vbprintpage();
+	else
+		alert("Erreur !");
+	return false;
+}
+
+if (da && !pr && !mac) with (document) {
+  writeln('<OBJECT ID="WB" WIDTH="0" HEIGHT="0" CLASSID="clsid:8856F961-340A-11D0-A96B-00C04FD705A2"></OBJECT>');
+  writeln('<' + 'SCRIPT LANGUAGE="VBScript">');  writeln('Sub window_onunload');
+  writeln('  On Error Resume Next');  writeln('  Set WB = nothing');
+  writeln('End Sub');  writeln('Sub vbPrintPage');
+  writeln('  OLECMDID_PRINT = 6');
+  writeln('  OLECMDEXECOPT_DONTPROMPTUSER = 2');
+  writeln('  OLECMDEXECOPT_PROMPTUSER = 1');  writeln('  On Error Resume Next');
+  writeln('  WB.ExecWB OLECMDID_PRINT, OLECMDEXECOPT_DONTPROMPTUSER');
+  writeln('End Sub');  writeln('<' + '/SCRIPT>');
+}
+
+function send(cmd)
+{
+	document.saisie._CMD.value = cmd;
+	document.saisie.submit();
+}
+
+
+
+function sendAfterValidation(cmd)
+{
+	if(valid() == true)
+	{
+		document.saisie._CMD.value = cmd;
+		document.saisie.submit();
+	}
+}
+
+
+function showBasket()
+{
+  var URL = "http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdConsultBasket&_LANG=FR&_AGENCY=VSC";
+  window.open(URL, 'Panier','width=781,height=500,scrollbars');
+}
+
+
+function showLogin()
+{
+var  fieldsCommvoy=""; 
+ if(document.saisie.OD_departure !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&OD_departure=" + GetSelectedValue(document.saisie.OD_departure);
+ if(document.saisie.OD_arrival !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&OD_arrival=" + GetSelectedValue(document.saisie.OD_arrival);
+ if(document.saisie.OD_via !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&OD_via=" + GetSelectedValue(document.saisie.OD_via);
+ if(document.saisie.departure_day !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&departure_day=" + document.saisie.departure_day.options[document.saisie.departure_day.selectedIndex].value;
+ if(document.saisie.departure_month !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&departure_month=" + document.saisie.departure_month.options[document.saisie.departure_month.selectedIndex].value;
+ if(document.saisie.departure_choice !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&departure_choice=" + document.saisie.departure_choice.value;
+ if(document.saisie.departure_time_min !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&departure_time_min=" + document.saisie.departure_time_min.options[document.saisie.departure_time_min.selectedIndex].value;
+ if(document.saisie.departure_time_max !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&departure_time_max=" + document.saisie.departure_time_max.options[document.saisie.departure_time_max.selectedIndex].value;
+ if(document.saisie.return_day !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&return_day=" + document.saisie.return_day.options[document.saisie.return_day.selectedIndex].value;
+ if(document.saisie.return_month !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&return_month=" + document.saisie.return_month.options[document.saisie.return_month.selectedIndex].value;
+ if(document.saisie.return_choice !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&return_choice=" + document.saisie.return_choice.value;
+ if(document.saisie.return_time_min !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&return_time_min=" + document.saisie.return_time_min.options[document.saisie.return_time_min.selectedIndex].value;
+ if(document.saisie.return_time_max !=null)
+ 		fieldsCommvoy = fieldsCommvoy+ "&return_time_max=" + document.saisie.return_time_max.options[document.saisie.return_time_max.selectedIndex].value;
+ if(document.saisie.service_COMMVOY1_MEAL !=null){
+	radioBt = document.saisie.service_COMMVOY1_MEAL;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_MEAL="+ val;}
+ if(document.saisie.service_COMMVOY1_PLACEMENT_DAY_TRAIN !=null){
+	radioBt = document.saisie.service_COMMVOY1_PLACEMENT_DAY_TRAIN;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_PLACEMENT_DAY_TRAIN="+ val;}
+ if(document.saisie.service_COMMVOY1_BOOKING !=null){
+	radioBt = document.saisie.service_COMMVOY1_BOOKING;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_BOOKING="+ val;}
+ if(document.saisie.service_COMMVOY1_NURSERY !=null){
+	radioBt = document.saisie.service_COMMVOY1_NURSERY;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_NURSERY="+ val;}
+ if(document.saisie.service_COMMVOY1_HAND !=null){
+	radioBt = document.saisie.service_COMMVOY1_HAND;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_HAND="+ val;}
+ if(document.saisie.service_COMMVOY1_BIKE !=null){
+	radioBt = document.saisie.service_COMMVOY1_BIKE;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_BIKE="+ val;}
+ if(document.saisie.service_COMMVOY1_PLACEMENT_FIRSTCLASS_TGV !=null){
+	radioBt = document.saisie.service_COMMVOY1_PLACEMENT_FIRSTCLASS_TGV;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_PLACEMENT_FIRSTCLASS_TGV="+ val;}
+ if(document.saisie.service_COMMVOY1_PLACEMENT_CORAIL_TRAIN !=null){
+	radioBt = document.saisie.service_COMMVOY1_PLACEMENT_CORAIL_TRAIN;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_PLACEMENT_CORAIL_TRAIN="+ val;}
+ if(document.saisie.service_COMMVOY1_SMOKER !=null){
+	radioBt = document.saisie.service_COMMVOY1_SMOKER;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_SMOKER="+ val;}
+ if(document.saisie.service_COMMVOY1_PLACEMENT_DUPLEX !=null){
+	radioBt = document.saisie.service_COMMVOY1_PLACEMENT_DUPLEX;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_PLACEMENT_DUPLEX="+ val;}
+ if(document.saisie.service_COMMVOY1_CLASS !=null){
+	radioBt = document.saisie.service_COMMVOY1_CLASS;
+var val=''
+	for(i=0; i<radioBt.length; i++) { if(radioBt[i].checked) val = radioBt[i].value;}
+	fieldsCommvoy = fieldsCommvoy+ "&service_COMMVOY1_CLASS="+ val;}
+  var URL = "http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdIdentification&_LANG=FR&_AGENCY=VSC";
+  URL = URL + fieldsCommvoy
+  if (rubriqueLogin && !rubriqueLogin.closed) { rubriqueLogin.location.replace(URL);}
+  else { rubriqueLogin=window.open(URL, 'Identification','width=600,height=210');}
+}
+
+
+function showInvitation()
+{
+  document.location.href = "/invit_voyage/home_invit_voyage_fr.htm";
+}
+function showDeNousAVous()
+{
+  document.location.href = "/nous_a_vous/home_nous_a_vous_fr.htm";
+}
+function showALaUne()
+{
+  document.location.href = "/a_la_une/home_a_la_une_fr.htm";
+}
+
+
+function showHelp(helpSubject)
+{
+  Help = window.open('http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdHelp&_LANG=FR&_AGENCY=VSC&hf_help=' + helpSubject, 'Help','status=no,width=425,height=300,scrollbars');
+}
+
+
+function showHelpOnPage()
+{
+	var _form = document.saisie ; 
+	var _HelpOn = _form.hf_help ; 
+  Help = window.open('http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdHelp&_LANG=FR&_AGENCY=VSC&hf_help=' + _HelpOn.value, 'Help','status=no,width=425,height=300,scrollbars');
+}
+
+
+function frequentTravelSelected(liste)
+{
+	document.location = 'http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CMD_FREQUENT_TRAVEL_CHOOSEN&_LANG=FR&_AGENCY=VSC&regularTravel=' + liste.options[liste.selectedIndex].value
+}
+
+
+function changeCard(myIndex){}
+function showConversionWindow(URL)
+{
+conversionWindow = window.open(URL, 'Conversion','width=740,height=600,scrollbars=no');
+}
+</SCRIPT>
+<SCRIPT LANGUAGE=JAVASCRIPT>
+var languagePrefix = "/img/fr";
+function showCalendar(UpdateWhichDay, UpdateWhichMonth, UpdateWhichDIV) {
+  FieldForDay=UpdateWhichDay; FieldForMonth=UpdateWhichMonth; cible=UpdateWhichDIV; 
+  window.open('/webgl/popup_cal.jsp','calendrier','status=no,width=249,height=250');
+}
+// initialisation des variables propres a la page
+// declaration de cible pour le popup de calendrier
+var today = new Date();
+var cible;
+var formName='saisie'; 
+</SCRIPT>
+
+</head>
+
+<!-- BODY -->
+<body bgcolor="#B0B0EB" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"
+
+
+
+
+
+>
+
+
+
+
+<script type="text/javascript" src="/src/frIsCookieEnable.js"></script>
+<SCRIPT language="JavaScript">
+
+
+function validGoExpedia(expediaURL) {
+
+		document.location.href = expediaURL;
+
+}
+</SCRIPT>
+<link rel="stylesheet" href="/homepage/homepageV1.css" type="text/css">
+<table width="770" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <!-- logo sncf / Expedia -->
+
+	<td width="178" bgcolor="white" rowspan="2"> 
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+        <tr> 
+          <td rowspan="3" width="17"><img src="/img/b.gif" width="17" height="1"></td>
+          <td width="111" height="52" valign="top"><a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdHomePage&_LANG=FR&_AGENCY=VSC"><img src="/img/frbanvoy_avv.gif" width="111" height="52" border="0"></a></td>
+          <td width="180" height="52"><img src="/img/b.gif" height="35" width="1" align="bottom"><a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdHomePage&_LANG=FR&_AGENCY=VSC"><img src="/img/frbancom_avv.gif" width="42" height="13" border="0"></a></td>
+        </tr>
+        <tr>
+          <td width="111" height="25" valign="top"><img src="/img/b.gif" width="111" height="25"></td>
+          <td width="180">&nbsp;</td>
+        </tr>
+      </table>		
+	</td>
+	<!-- Banniere de pub -->
+	
+	<!-- Permet de placer la publicité -->
+	<td height="55" bgcolor="white" width="45"><img src="/img/b.gif" height="1" width="45"></td>
+	<td height="55" bgcolor="white" width="57"><img src="/img/b.gif" height="1" width="57"></td>
+			
+	<td height="60" bgcolor="white" colspan="8"><script language="JavaScript">
+    var time = new Date();
+    ordval= (time.getTime());
+</script>
+
+
+
+
+	<ILAYER ID="ad1" VISIBILITY="hidden" WIDTH="468" HEIGHT="60"></ILAYER>
+
+
+
+	<NOLAYER><IFRAME scrolling="no" frameborder="0" width="468" height="60" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="http://ad.fr.doubleclick.net/adi/sncfglrg.fr/resa;sz=468x60;kw=d35FRRNS;kw=a75FRPAR;kw=c1;kw=pg4;kw=nf;ord=123456?">
+	
+		<a href="http://ad.fr.doubleclick.net/jump/sncfglrg.fr/resa;sz=468x60;kw=d35FRRNS;kw=a75FRPAR;kw=c1;kw=pg4;kw=nf;abr=!ie4;abr=!ie5;ord=123456?"><img src="http://ad.fr.doubleclick.net/ad/sncfglrg.fr/resa;sz=468x60;kw=d35FRRNS;kw=a75FRPAR;kw=c1;kw=pg4;kw=nf;abr=!ie4;abr=!ie5;ord=123456?" width="468" height="60" border="0"></a>
+	
+	</IFRAME>
+	</NOLAYER>
+</td>
+	
+	<td width="31"><img src="http://expedia.voyages-sncf.com/pub/agent.dll?qscr=live" width="1" height="1" border="0"></td>
+  </tr>
+  <tr>
+      <td colspan="10">
+  	<table border="0" cellspacing="0" cellpadding="0" width="590">
+  	<tr>
+	    <td><img src="/img/b.gif" height="1" width="45"></td>
+    	    <td width="65" height="20" valign="bottom"><a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdHomePage&_LANG=FR&_AGENCY=VSC"><img src="/img/vignettes/vignette-accueil-bleu.gif" width="65" height="16" border="0"></a></td>
+    	    <td width="60" height="20" valign="bottom"><a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdOrderTrain&_LANG=FR&_AGENCY=VSC"><img src="/img/vignettes/vignette-train-or.gif" width="60" height="16" border="0"></a></td>
+    	    <td width="53" height="20" valign="bottom"><a href="JavaScript:validGoExpedia('http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdExpediaFlightLaunch&_LANG=FR&_AGENCY=VSC');"><img src="/img/vignettes/vignette-vols-bleu.gif" width="53" height="16" border="0"></a></td>
+    	    <td width="54" height="20" valign="bottom"><a href="JavaScript:validGoExpedia('http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdExpediaHotLaunch&_LANG=FR&_AGENCY=VSC');"><img src="/img/vignettes/vignette-hotel-bleu.gif" width="54" height="16" border="0"></a></td>
+    	    <td width="69" height="20" valign="bottom"><a href="JavaScript:validGoExpedia('http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdExpediaCarLaunch&_LANG=FR&_AGENCY=VSC');"><img src="/img/vignettes/vignette-voiture-bleu.gif" width="69" height="16" border="0"></a></td>
+    	    <td width="73" height="20" valign="bottom"><a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdExpediaWeekEndLaunch&_LANG=FR&_AGENCY=VSC"><img src="/img/vignettes/vignette-weekend-bleu.gif" width="73" height="16" border="0"></a></td>
+    	    <td width="64" height="20" valign="bottom"><a href="JavaScript:validGoExpedia('http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdExpediaPkgLaunch&_LANG=FR&_AGENCY=VSC');"><img src="/img/vignettes/vignette-sejour-bleu.gif" width="64" height="16" border="0"></a></td>
+    	    <td width="43" height="20" valign="bottom"><a href="JavaScript:validGoExpedia('http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdExpediaPromoLaunch&_LANG=FR&_AGENCY=VSC');"><img src="/img/vignettes/vignette-promos-bleu.gif" width="59" height="16" border="0"></a></td>
+    	    <td width="67" height="20" valign="bottom"><a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdExpediaEmagLaunch&_LANG=FR&_AGENCY=VSC"><img src="/img/vignettes/vignette-emag-bleu.gif" width="67" height="16" border="0"></a></td>
+    	</tr>
+    	</table>
+     </td>    
+   </tr>
+</table>
+
+	<LAYER SRC="http://ad.fr.doubleclick.net/adl/sncfglrg.fr/resa;sz=468x60;kw=d35FRRNS;kw=a75FRPAR;kw=c1;kw=pg4;kw=nf;ord=123456?;ord=&amp;{ordval}?" visibility="hidden" id="a1" width="468" onload="moveToAbsolute(ad1.pageX,ad1.pageY); a1.clip.height=60;a1.clip.width=468;visibility='show';"></LAYER>
+
+<table width="770" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+   <td width="204" class=fdor><img src="/b.gif" width="1" height="1"></td>
+   <td class="fdor" width="82" valign="middle"><img src="/b.gif" width="1" height="1"></td>
+   <td width="85" class=fdor><img src="/b.gif" width="1" height="1"></td>
+   <td width="23"class=fdor><img src="/b.gif" width="1" height="1"></td>
+   <td width="80" class=fdor><img src="/b.gif" width="1" height="1"></td>
+   <td width="21"class=fdor><img src="/b.gif" width="1" height="1"></td>
+   <td width="50"class=fdor><img src="/b.gif" width="1" height="1"></td>
+   <td width="23" class="fdor"><img src="/img/picto_plan_site.gif" width="20" height="19"></td>
+   <td width="62" valign="bottom" align="center" class="fdor"><a href="http://www.voyages-sncf.com/go/expedia/plan_du_site.htm" class="lknoir10">Plan du site</a></td>
+   <td width="20" class="fdor"><img src="/img/picto_aide.gif" width="20" height="19"></td>
+   <td width="26" valign="bottom" class="fdor"><a href="http://www.voyages-sncf.com/go/expedia/contact.htm" class="lknoir10">Aide</a></td>
+  </tr>
+</table>
+
+
+<!-- FORM -->
+
+  <INPUT TYPE="hidden" NAME="_DLG" VALUE="SvTermComm2">
+<INPUT TYPE="hidden" NAME="_LANG" VALUE="FR">
+<INPUT TYPE="hidden" NAME="_AGENCY" VALUE="VSC">
+<INPUT TYPE="hidden" NAME="_CMD" VALUE="defaultCmd">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr bgcolor="#4B44C1"> <td valign="top" bgcolor="#4B44C1">
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr><td> 
+<table border="0" cellspacing="0" cellpadding="0" height="16" ><tr><td height="16" width="630" valign="top"><img src="/b.gif" height="16" width="630"  border="0" ><img src="/b.gif" width="1" height="1"></td></tr></table>	</td></tr>
+	<td bgcolor="#4B44C1" height="3"><img src="/b.gif" width="1" height="3"></td>
+	</tr>
+	<tr> 
+	  <td bgcolor="#4B44C1" valign="top" > 
+	  <table border="0" cellspacing="0" cellpadding="0">
+	  	<tr> 
+			<td width="84"><img src="/b.gif" width="84" height="1" alt="" border="0"></td>
+			<td><img src="/img/frtitrco.gif" alt="
+RÉCAPITULATIF DE VOTRE COMMANDE
+"></td>
+  		</tr>
+  	  </table>
+  	  </td>
+	</tr>
+	<tr>
+  		<td bgcolor="#4B44C1" height="5"></td>
+	</tr>
+	<tr> 
+       <td bgcolor="#4B44C1" valign="bottom"> 
+        	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+        	<tr bgcolor="#4B44C1"> 
+          		<td ><img src="/b.gif" width="1" height="12" alt="" border="0"><img src="/b.gif" width="84" height="1"></td>
+	      		<td valign="bottom" class="default2">
+    	<div align="right">
+Aujourd’hui, nous sommes le <script language="javascript">var today = new Date();var minutes=today.getMinutes();minutes=(minutes < 10) ? '0' + minutes : minutes;var months=today.getMonth()+1;months=(months < 10) ? '0' + (months) : months;var days=today.getDate();days=(days < 10) ? '0' + (days) : days;document.write(days+'/'+months+'/'+today.getFullYear()+", il est ");document.write(today.getHours()+'h'+minutes);</script>    	</div>
+                </td>
+			</tr>
+			</table>
+ 		</td>
+    </tr>
+	<tr><td bgcolor="#4B44C1"  height="4"><img src="/b.gif" width="1" height="4"></td></tr>
+	</table>
+</td>
+<td valign="bottom" bgcolor="#4B44C1"> 
+	<table border="0" cellspacing="0" cellpadding="0">
+    <tr valign="middle" > 
+		<td><img src="/img/frvalise.gif" width="46" height="46" border="0"><BR><img src="/b.gif" width="5" height="10" border="0"></td>
+		<td><img src="/b.gif" width="5" height="30" border="0"></td>
+		<td valign="middle"><img src="/b.gif" width="95" height="1"><BR>
+        </td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td bgcolor="#4B44C1" nowrap><img src="/b.gif" width="84" height="24">
+</td>
+      <td bgcolor="#4B44C1"><img src="/b.gif" width="17" height="1"></td>
+      <td bgcolor="#4B44C1" nowrap><a href="javascript:showHelpOnPage();"><img src="/img/frptint1.gif" width="17" height="17" border="0" alt="Aide
+"><img src="/b.gif" width="5" height="24" border="0"></a></td>      <td bgcolor="#4B44C1" nowrap><a href="javascript:showHelpOnPage();"><span class="jaune2">Aide
+</span></a></td>      <td bgcolor="#4B44C1"><img src="/b.gif" width="30" height="1"></td>
+    </tr>
+    <tr bgcolor="#4B44C1">
+      <td colspan="5"><img src="/b.gif" width="1" height="3"></td>
+    </tr>
+  </table>
+ <table width="100%"><tr><td><img src="/b.gif" width="1" height="3"></td></tr>
+</table>
+
+
+<SCRIPT LANGUAGE=JAVASCRIPT>
+function createFrequentTravel(paramUrl) {
+  if (confirm("Attention ! Vous serez enregistré comme unique passager du voyage que vous venez de commander. Si vous désirez ajouter des compagnons à ce voyage, nous vous invitons à consulter votre compte. Merci."))
+  	document.location = paramUrl ;
+}
+
+function showMaximiles()
+{
+	window.open('http://www.maximiles.com/joinsncf.php');
+}
+</SCRIPT>
+
+
+<FORM name = "saisie">     
+<input type="hidden" name="hf_help" value="COMM2">
+</FORM>
+
+<table border="0" cellspacing="0" cellpadding="0" width="753">
+        <tr>
+      		<td><img src="/b.gif" width="20" height="1"></td>
+			<td valign="top"><img src="/img/fri.gif" width="33" height="33"></td>
+			<td><span class="default"><b>Votre commande est maintenant termin&eacute;e.<br></b></span></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td valign="top">&nbsp;</td>
+			<td><span class="default">
+			
+	      			Vous allez recevoir un e-mail qui mentionnera les références de vos réservations.<br>Attention : Pour les trajets effectués en EUROSTAR, vous devez impérativement retirer vos dossiers voyage au plus tard 30 minutes avant le départ du train.
+	   			   
+				<br>
+				Nous vous remercions de votre confiance et esp&eacute;rons vous revoir tr&egrave;s bient&ocirc;t sur voyages-sncf.com.
+				<br>
+				<br>
+			
+		      			Vous pourrez obtenir les billets correspondant au(x) dossier(s) dont les références figurent ci-dessous en les retirant dans les gares, les boutiques SNCF, les billetteries automatiques ou les agences agréées.
+	      			
+      
+       
+      
+      			</span><BR><BR>
+				<span class="defaultviolet">
+				</span><span align="right"></span><span align="right"><a href="#" onClick="window.print()"><img src="/img/frimpr3.gif" width="109" height="23" border="0" align="right" alt="Imprimer"></a></span><span class="defaultviolet"><B>Voici les références de vos réservations. Nous vous conseillons vivement de les imprimer.</B></span></td>
+		</tr>
+    </table>
+
+<!-- DZ CONTENU PAGE -->  
+<table border="0" cellspacing="0" cellpadding="0" width="753">
+	<tr>			
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td colspan="7"><img src="/b.gif" height="1"></td>
+	</tr> 
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td>
+      						
+				
+			    <table border="0" cellspacing="0" cellpadding="0">
+       							
+					
+				    <tr>
+        							
+						
+					    <td rowspan="2"><img src="/img/frcoude2.gif" width="25" height="22"></td>
+						<td class="traitbleu"><img src="/b.gif" width="23" height="1"></td>
+					</tr>
+       							
+					
+				    <tr>
+									
+						
+					    <td><img src="/b.gif" width="1" height="21"></td>
+					</tr>
+       							
+					
+				    <tr>
+									
+						
+					    <td class="cel20fd" colspan="2"><img src="/b.gif" width="48" height="7"></td>
+					</tr>
+      						
+				
+			    </table>
+			</td>
+			<td>
+      						
+				
+			    <table border="0" cellspacing="0" cellpadding="0">
+				    <tr>		
+					    <td class="traitbleu"><img src="/b.gif" width="245" height="1"></td>
+					</tr>
+
+				    <tr>
+									
+						
+					    <td><span class="bleugraspt2"><img src="/b.gif" width="1" height="15">Votre commande<br>
+										<img src="/b.gif" width="1" height="4"></span></td>
+					</tr>
+       							
+					
+				    <tr>
+									
+						
+					    <td class="cel20fd"><img src="/b.gif" width="245" height="7"></td>
+					</tr>
+      						
+				
+			    </table>
+			</td>
+			<td>
+      						
+				
+			    <table border="0" cellspacing="0" cellpadding="0">
+       							
+					
+				    <tr>
+									
+						
+					    <td class="traitbleu"><img src="/b.gif" width="4" height="1"></td>
+						<td class="traitbleu"><img src="/b.gif" width="82" height="1"></td>
+						<td class="traitbleu"><img src="/b.gif" width="4" height="1"></td>
+					</tr>
+       							
+					
+				    <tr>
+									
+						
+					    <td colspan="3"><img src="/b.gif" width="1" height="16"></td>
+					</tr>
+       							
+					
+				    <tr class="onglet">
+        							
+						
+					    <td valign="top"><img src="/img/frpcg.gif" width="4" height="4"></td>
+						<td><span class="default"><b>DATES</b></span></td>
+						<td valign="top" align="right"><img src="/img/frpcd.gif" width="4" height="4"></td>
+					</tr>
+      						
+				
+			    </table>
+			</td>
+			<td>
+      						
+				
+			    <table border="0" cellspacing="0" cellpadding="0">
+       							
+					
+				    <tr>
+									
+						
+					    <td class="traitbleu"><img src="/b.gif" width="1" height="1" ></td>
+					</tr>
+       							
+					
+				    <tr>
+									
+						
+					    <td><img src="/b.gif" width="1" height="27"></td>
+					</tr>
+      						
+				
+			    </table>
+			</td>
+			<td>
+      						
+				
+			    <table border="0" cellspacing="0" cellpadding="0">
+       							
+					
+				    <tr>
+									
+						
+					    <td class="traitbleu"><img src="/b.gif" width="4" height="1"></td>
+						<td class="traitbleu"><img src="/b.gif" width="170" height="1"></td>
+						<td class="traitbleu"><img src="/b.gif" width="4" height="1"></td>
+					</tr>
+       							
+					
+				    <tr>
+									
+						
+					    <td colspan="3"><img src="/b.gif" width="1" height="16"></td>
+					</tr>
+       							
+					
+				    <tr class="onglet">
+        							
+						
+					    <td valign="top"><img src="/img/frpcg.gif" width="4" height="4"></td>
+						<td width="170"><span class="default"><b>PRIX</b></span></td>
+						<td align="right" valign="top"><img src="/img/frpcd.gif" width="4" height="4"></td>
+					</tr>
+      						
+				
+			    </table>
+			</td>
+			<td>
+      						
+				
+			    <table border="0" cellspacing="0" cellpadding="0">
+       							
+					
+				    <tr>
+									
+						
+					    <td class="traitbleu"><img src="/b.gif" width="168" height="1"></td>
+					</tr>
+       							
+					
+				    <tr>
+									
+						
+					    <td><img src="/b.gif" width="1" height="27"></td>
+					</tr>
+      						
+				
+			    </table>
+			</td>
+			<td>
+      						
+				
+			    <table border="0" cellspacing="0" cellpadding="0">
+       							
+					
+				    <tr>
+									
+						
+					    <td class="traitbleu"><img src="/b.gif" width="3" height="1"></td>
+					</tr>
+       							
+					
+				    <tr>
+									
+						
+					    <td><img src="/b.gif" width="1" height="27"></td>
+					</tr>
+      						
+				
+			    </table>
+			</td>
+						
+			</tr>
+
+	
+			<!-- DZ CARTOUCHE VOYAGE-->
+
+
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel20fd" colspan="5"><img src="/b.gif"></td>
+		<td colspan="2" ><img src="/b.gif" ></td>
+	</tr>
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel20fd"><img src="/b.gif" width="1" height="3"></td>
+		<td class="cel91fd"><img src="/b.gif"></td>
+		<td class="cel92fd"><img src="/b.gif"></td>
+		<td class="filetrose"><img src="/b.gif"></td>
+		<td class="cel92fd" colspan="2"><img src="/b.gif" border="0"></td>
+		<td valign="top" class="cel92fd" align="right"><img src='/img/frcoh.gif' width='3' height='3'></td>
+	</tr>
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel20fd" valign="top" align="center"><img src="/img/frpic1.gif" width="43" height="20"></td>
+		<td class="cel91fd" width="245" valign="top">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td nowrap><span class="default"><img src="/b.gif" width="3" height="1">
+					Aller&nbsp;retour
+						</span></td>
+					<td nowrap><img src="/b.gif" width="2" height="1"><span class="default">|1<img src="/img/frpbh.gif" width="8" height="13">|</span><img src="/b.gif" width="2" height="1"></td>
+					<td><span class="default"> RENNES - PARIS MONTPARNASSE 1 ET 2</span></td>
+				</tr>
+			</table>
+					<!-- if comm2 ou consult2 -->
+			<table border="0" cellspacing="0" cellpadding="0">
+		    <tr>
+			    <td valign="top"><span class="default"><img src="/b.gif" width="5" height="1">Ref :&nbsp;</span></td>
+					<td><span class="default">
+							
+								 		
+											<a class="defaultrouge" href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdSeeDetailOfProduct&_LANG=FR&_AGENCY=VSC&indexCommand=0&indexProduit=0&COMMAND=0"><u>RRVJXI</u></a>
+										
+										
+								
+											
+						</span></td>
+				</tr>
+	    </table>
+	    	
+			<table width="100%" border="0">
+			
+			
+	    </table>
+			<!-- fin if comm2 ou consult2 -->
+			
+		</td>
+		<td class="cel92fd" width="90" valign="top" align="center">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><span class="default">
+					
+	          				A:&nbsp;02/04/2002<br>
+	          				&nbsp;R:&nbsp;02/04/2002
+	          								
+					</span></td>
+				</tr>
+			</table>
+		</td>
+		<td class="filetrose"><img src="/b.gif" ></td>
+		<td class="cel92fd" colspan="2" valign="top">
+		
+		<!-- if comm2 -->
+	    <table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="2"><img src="/b.gif" width="2" height="1"></td>
+					<td width="79"  nowrap><span class="vert2"><b>39.20&nbsp;EUR</b></span></td>
+					<td width="4"><img src="/b.gif" width="4" height="1"></td>
+					<td width="92"  nowrap><span class="default">soit&nbsp;257.14&nbsp;FRF</span></td>
+					<td width="4"><img src="/b.gif" width="4" height="1"></td>
+					<td width="67"><img src="/b.gif" border="0"></td>
+					<td width="1"><img src="/b.gif" width="1" height="1"></td>
+					<td width="87">
+					
+						<a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdSeeDetailOfProduct&_LANG=FR&_AGENCY=VSC&indexCommand=0&indexProduit=0&COMMAND=0">
+							<img src="/img/frbtvdt2.gif" alt="Voir le détail" border="0"></a>
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="cel92fd" colspan="8" valign="middle" align="center"><span class="vert2"><b>
+				
+					
+					Payé avec retrait sur place
+					
+				
+					</b></span></td>
+				</tr>
+		  </table>
+		<!-- fin if comm2-->
+		
+		</td>
+		<td class="cel92fd"><img src="/b.gif" ></td>
+	</tr>
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel20fd"><img src="/b.gif" width="1" height="3"></td>
+		<td class="cel91fd"><img src="/b.gif" ></td>
+		<td class="cel92fd"><img src="/b.gif" ></td>
+		<td class="filetrose"><img src="/b.gif" ></td>
+		<td class="cel92fd" colspan="2"><img src="/b.gif" ></td>
+		<td class="cel92fd" valign="top" align="right"><img src='/img/frcob.gif' width='3' height='3'></td>
+	</tr>
+		
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>			
+		<td class="filetbleu"><img src="/b.gif"></td>
+		<td colspan="5" class="cel20fd"><img src="/b.gif"></td>
+		<td><img src="/b.gif"></td>
+	</tr>
+
+<!-- DZ CARTOUCHE BLANC -->
+
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel12fd"><img src="/b.gif" width="1" height="13"></td>
+		<td colspan="2" class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite" valign="top" align="right"><img src="/img/frcoh.gif" width="3" height="3"></td>
+	</tr>
+	
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel12fd"><img src="/b.gif" width="1" height="3"></td>
+		<td colspan="2" class="celwhite"><span class="vert"><b class="vertbig"><img src="/b.gif" width="5" height="1"> TOTAL</b> de votre commande * <br> * Prix donnés à titre indicatif<br>
+				<br>
+				</span></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite" colspan="2"><img src="/b.gif" width="5" height="1"><span class="vertbig"><b>39.20 EUR
+			</b></span><span class="vert2"><img src="/b.gif" width="22" height="1"></span><span class="defaultbig">soit&nbsp;257.14 FRF</span></td>
+		<td class="celwhite">&nbsp;</td>
+	</tr>
+	
+					<!-- FZ CARTOUCHE BLANC -->
+<!-- DZ PRIX INDICATIF -->
+	
+	<tr>
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel12fd"><img src="/b.gif" width="1" height="22"></td>
+		<td colspan="2" class="celwhite"><span class="vert">&nbsp;&nbsp;&nbsp;<b>
+		Total des produits SNCF payés</b><br>
+				<br>
+				</b></span></td>
+		<td class="celwhite"><img src="/b.gif" width="1"></td>
+		<td class="celwhite" colspan="2"><img src="/b.gif" width="5" height="1"><span class="vert"><b>39.20 EUR
+			</b></span><img src="/b.gif" width="24" height="1"><span class="default">soit&nbsp;257.14 FRF<br>
+				</span></td>
+		<td class="celwhite"><img src="/b.gif" width="1"></td>
+	</tr>
+	
+	
+	<tr>					
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel12fd"><img src="/b.gif" width="1" height="1"></td>
+		<td colspan="2" class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite" align="right"><a href="javascript:showConversionWindow('http://www.lesechos.fr/clients/sncf/index.htm')"><span class="vert"><b><u>Convertisseur Devises</u></b></span></a></td>
+		<td class="celwhite"><img src="/b.gif" width="1"></td>
+	</tr>
+	
+	<tr>					
+		<td><img src="/b.gif" width="20" height="1"></td>
+		<td class="cel12fd"><img src="/b.gif" width="1" height="1"></td>
+		<td colspan="2" class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite"><img src="/b.gif"></td>
+		<td class="celwhite" valign="bottom" align="right"><img src="/img/frcob.gif" width="3" height="3"></td>
+	</tr>
+	<tr>
+			<td><img src="/b.gif" width="20" height="1"></td>
+			<td class="cel12fd" width="48"><img src="/b.gif" width="1" height="22"></td>
+			<td class="cel12fd" valign="top" colspan="5"><span class="bleupt2"><br>
+							Attention, les prix ci-dessus sont systématiquement affichés en Euros.<br>Seuls les prix en monnaies locales pour chacun des produits commandés sont garantis.<br>Pour convertir ces montants dans la monnaie de votre choix, utilisez notre convertisseur de devises.
+							<br>
+							<br>
+							</span><img src="/b.gif"><img src="/b.gif"><img src="/b.gif"></td>
+			<td class="cel12fd" valign="top" width="4" align="right"><img src="/img/frcoh.gif" width="3" height="3"></td>
+	</tr>
+					<!-- FZ PRIX INDICATIF -->
+</table>
+
+ <br>
+  <table width="753" border="0" cellspacing="0" cellpadding="0">
+    <tr align="right"> 
+      <td><img src="/b.gif" width="1" height="5" border="0" class="contenurosegros"><br></td>
+      
+          <td valign="center"><a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdHomePage&_LANG=FR&_AGENCY=VSC"><img src="/img/frrtra.gif" height="23" border="0" alt="Retour à la page d'accueil"></a><img src="/b.gif" width="15" height="1"></td><td>
+          
+	
+        <a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=CmdCreatCustomerAccount&_LANG=FR&_AGENCY=VSC"><img src="/img/frcocl.gif" height="23" border="0" alt="CRÉER VOTRE COMPTE MES VOYAGES"></a><img src="/b.gif" width="70" height="1"></td>
+	
+    </tr>
+  </table>
+  <img src="/b.gif" width="1" height="15"><br>
+	
+		
+
+
+<table border="0" cellspacing="0" cellpadding="0">
+		 
+		<tr> 
+			<td><img src="/b.gif" width="149" height="8"></td>
+			<td><img src="/b.gif" width="12" height="1"></td>
+			<td><img src="/b.gif" width="100" height="8"></td>
+			<td><img src="/b.gif" width="15" height="8"></td>
+			
+			<td><img src="/b.gif" width="100" height="8"></td>
+			<td><img src="/b.gif" width="15" height="8"></td>
+			
+			<td><img src="/b.gif" width="100" height="8"></td>
+			<td><img src="/b.gif" width="14" height="8"></td>
+			
+			<td><img src="/b.gif" width="100" height="8"></td>
+			<td><img src="/b.gif" width="12" height="8"></td>
+			
+		</tr>
+		 
+		<tr> 
+			<td rowspan="5">&nbsp;</td>
+			<td colspan="9" align="center"><span class="default12"><b>Informations pratiques sur vos Destinations Voyage</b><br><br></span></td>
+		</tr>
+		 
+		<tr> 
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			
+			<td colspan="2"><img src="/img/frlgmc.gif" width="83" height="33" border="0"></td>
+			
+			<td colspan="2"><img src="/img/frlgma.gif" width="79" height="33" border="0"></td>
+			
+			<td colspan="2"><img src="/img/frlgcity.gif" width="78" height="33"></td>
+			
+			<td>&nbsp;</td>
+		</tr>
+		
+		
+		<tr> 
+			<td rowspan="3"><img src="/img/fr2cg.gif" width="12" height="23"></td>
+			<td colspan="7" class="onglet"><img src="/b.gif" width="1" height="1"></td>
+			<td rowspan="3"><img src="/img/fr2cd.gif" width="12" height="23"></td>
+		</tr>
+		 
+		<tr> 
+			<td align="center"><span class="default12"><b>PARIS</b></span></td>
+			
+			<td align="center"><img src="/b.gif" width="1" height="4"><br>
+				<a href="http://www.meteoconsult.fr/partenaire/sncf/fr/commande.php?saisie=PARIS&langue=fr"><img src="/img/frpcbl.gif" width="13" height="13" border="0"></a><br>
+				<img src="/b.gif" width="1" height="4"></td>
+			<td align="center"><a href="http://www.meteoconsult.fr/partenaire/sncf/fr/commande.php?saisie=PARIS&langue=fr"><span class="default">Météo à 5 jours</span></a></td>
+				
+			<td align="center">
+			<form ACTION="http://www.maporama.com/affiliates/sncf2/share/map.asp" METHOD="get" name="maporama_form_0_0">
+			<input TYPE="hidden" NAME="_XgoGCAdrCommand" VALUE="run"/>
+			<input TYPE="hidden" NAME="LANGUAGE" VALUE="fr"/>
+			<input TYPE="hidden" NAME="DBAFFILIATEID" VALUE="{93F9E1DB-2FFE-4FD5-ADEC-0D5F0317C06E}"/>
+			<!-- Here you modify your address ID from your database-->
+			<input TYPE="hidden" NAME="INNERCODE" VALUE="FRPMO"/>
+			<input type="hidden" name="VN" value="NEWCIBLESTYLE"/>
+			<input type="hidden" name="VV" value="sncftrain.gif"/>
+			<input type="hidden" name="VN" value="RET_COM"/>
+			<input type="hidden" name="VV" value="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=&_LANG=FR&_AGENCY=VSC"/>
+			<input type="hidden" name="VN" value="TESTPANIER"/>
+			<input type="hidden" name="VV" value="1"/>			
+			<input type="image" name="SEARCH_AFFILIATE_DATA" border="0" src="/img/frpcgr.gif" width="13" height="13" border="0"></td>
+			<td align="center">
+			<input type="hidden" name="SEARCH_AFFILIATE_DATA.x" value="1"/>
+			<input type="hidden" name="SEARCH_AFFILIATE_DATA.y" value="1"/>
+			<a href="javascript:document.maporama_form_0_0.submit()"><span class="vert4">Plan de la ville</span></a></td>
+			</form>
+				
+			<SCRIPT language="javascript" src="http://www.cityvox.com/scripts/SNCF_v2?langue=fr&codegare=FRPMO&datealler=02/04/02&dateretour=02/04/02"></SCRIPT>
+				
+		</tr>
+		 
+		<tr> 
+			<td colspan="7" class="onglet"><img src="/b.gif" width="1" height="1"></td>
+		</tr>
+		
+		 
+    </table>
+    
+    
+	
+  <br>
+   <table border='0' cellspacing='0' cellpadding='0'>
+ <tr><td colspan='2'><img src='/b.gif' width='1' height='20'></td></tr>
+ <tr>
+  <td><img src='/b.gif' width='13'></td>
+  <td nowrap>
+  	<span class="menubasbas"><a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdContact&_LANG=FR&_AGENCY=VSC" target="_blank" style="text-decoration: none" class="menubasbas">Contact</a> 
+  	| <a href="http://www.voyages-sncf.com/dynamic/_SvTermComm2?_DLG=SvTermComm2&_CMD=cmdHomePage&_LANG=FR&_AGENCY=VSC" style="text-decoration: none" class="menubasbas">Retour accueil</a></span>
+  </td> </tr>
+</table>
+
+
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+oas_rand=String(Math.random()).substr(2,10);
+document.write('<IMG SRC="http://oad.realmedia.com/RealMedia/ads/adstream_nx.ads/ARDA_VSC2002/track/com2/1'+oas_rand+'" BORDER=0 WIDTH=1 HEIGHT=1>')
+//-->
+</SCRIPT>
+
+</body>
+</html>

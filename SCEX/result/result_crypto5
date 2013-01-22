@@ -1,0 +1,40 @@
+TEXT =************** (null) ************
+************reg1***************
+reg[0] =  184aa  	 count[0] = 22c2
+reg[1] =  1881f  	 count[1] = 22c7
+reg[2] =  1a7e  	 count[2] = 22cb
+reg[3] =  1b5c1  	 count[3] = 22cf
+reg[4] =  417e  	 count[4] = 22d2
+reg[5] =  b84a  	 count[5] = 22d4
+reg[6] =  2ca1  	 count[6] = 22d7
+reg[7] =  ec78  	 count[7] = 22dc
+reg[8] =  ddff  	 count[8] = 22df
+reg[9] =  12369  	 count[9] = 23cf
+************reg2***************
+reg[0] =  27eb3  	 count[0] = 22db
+reg[1] =  6b00e  	 count[1] = 22dc
+reg[2] =  20f69  	 count[2] = 22de
+reg[3] =  90a3  	 count[3] = 22e1
+reg[4] =  4c869  	 count[4] = 22eb
+reg[5] =  e750  	 count[5] = 22ed
+reg[6] =  29b3c  	 count[6] = 22ee
+reg[7] =  6429e  	 count[7] = 22f5
+reg[8] =  b357  	 count[8] = 22fa
+reg[9] =  46ad2  	 count[9] = 2326
+************reg3***************
+reg[0] =  1efbfc  	 count[0] = 230d
+reg[1] =  7fd2a8  	 count[1] = 2310
+reg[2] =  2f6bfe  	 count[2] = 2315
+reg[3] =  30e3c4  	 count[3] = 2317
+reg[4] =  5b6428  	 count[4] = 2319
+reg[5] =  24ea0  	 count[5] = 2320
+reg[6] =  3c91be  	 count[6] = 2324
+reg[7] =  23f234  	 count[7] = 2330
+reg[8] =  256eca  	 count[8] = 233c
+reg[9] =  6a0004  	 count[9] = 238e
+
+ reg1= 0x12369
+
+ reg2= 0x0
+
+ reg3= 0x6a0004

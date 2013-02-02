@@ -29,7 +29,7 @@ return (u8)(w & 1);
 
 void main (void){
 register u32 reg1, reg2, reg3, reb;
-u32 i, j;
+u8 i, j;
 u8 outblock,  f[8]={0,0,0,1,0,1,1,1}, x;
 
 reg1 = 0x1fffd;
@@ -37,7 +37,7 @@ reg2 = 0x2724f;
 reg3 = 0x200001;
 printf("Etats registre init : %lx %lx %lx\n",reg1,reg2,reg3);
 
-j=0L;
+
 for(j=0;j<8;j++) {
 	outblock=0;
 
@@ -49,7 +49,6 @@ for(j=0;j<8;j++) {
 		reg1>>=1;
 		reg1 |= reb ? 0x10000L : 0L;
 
-
 		reb= motpar(reg2 & POLY2);
 		reg2>>=1;
 		reg2 |= reb ? 0x40000L : 0L;
@@ -58,9 +57,8 @@ for(j=0;j<8;j++) {
 		reg3>>=1;
 		reg3 |= reb ? 0x400000L : 0L;
 	}
-		
-		printf("%c (%lx) ",outblock,outblock);
-
+	
+	printf("%lx (%c)\n",outblock,outblock);
 
 }
 

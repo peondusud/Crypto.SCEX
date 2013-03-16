@@ -1,8 +1,8 @@
 /* 
- * File:   main.c
- * Author: peon
+ * File:   0proof.concept.limited.bruteforce.c
+ * Author: peondusud
  *
- * Created on 15 mars 2013, 19:22
+ * Created on 15 december 2013, 19:22
  */
 
 #include <stdio.h>
@@ -34,7 +34,7 @@ unsigned int motpar(u32 w) {
     return (unsigned char) (w & 1);
 }
 
-char name[]="Mr DUPUY";
+char name[] = "Mr DUPUY";
 
 u8 stringLength = 0;
 int displayCaseFound = 1;
@@ -52,6 +52,8 @@ struct deep_tree {
     struct deep_tree *next;
 };
 
+#ifdef PERCENT
+
 inline signed long long nodeValue(deep_tree *origin) {
     int i = 0;
     signed long long value = 0;
@@ -63,6 +65,7 @@ inline signed long long nodeValue(deep_tree *origin) {
     }
     return value;
 }
+#endif
 
 inline deep_tree* createTree() {
     int i;
@@ -117,6 +120,7 @@ inline void updateRegs(deep_tree *tree, u32 *regs) {
     }; //all case if outblock bit=1
     char node = 0;
     char keep = 1;
+#ifdef PERCENT
     NB_OPS++;
     if (NB_OPS == 5000000) {
         long long currentState = nodeValue(tree);
@@ -134,19 +138,10 @@ inline void updateRegs(deep_tree *tree, u32 *regs) {
         printf("Current local time and date: %s", asctime(timeinfo));
         printf("************************************************************\n\n");
 
-        /*
-        fprintf(fout,"************************************************************\n");
-        fprintf(fout,"current node value %lld \n", currentState+1);
-        fprintf(fout,"number of every single combinations evalued %lld \n", globalCaseCounter);
-        fprintf(fout,"program has analysed %.3f %% of total cases \n", state*100);
-        fprintf(fout,"program has found %lld cases matching requested output \n", caseSolved);
-        fprintf(fout,"Current local time and date: %s",asctime(timeinfo));
-        fprintf(fout,"************************************************************\n\n");
-        fflush(fout);
-         */
 
-        NB_OPS = 0;
+        NB_OPS = 0; //reset 
     }
+#endif
     while (keep) {
 
         if (current->output_req) {
@@ -187,7 +182,7 @@ inline void readName(char* name, deep_tree* tree) {
     }
 }
 
-inline void printRegisters(u32 regs[3]) {
+void printRegisters(u32 regs[3]) {
     char j;
     for (j = 0; j < 3; j++) {
         printf("reg%d= 0x%lx;\n", j, regs[j]);
@@ -196,7 +191,7 @@ inline void printRegisters(u32 regs[3]) {
 
 u8 getCharFromIndexAndTree(u32 *regs) {
     u8 f[8] = {0, 0, 0, 1, 0, 1, 1, 1};
-    u8 x,outblock,j,i;
+    u8 x, outblock, j, i;
 
     u32 reb = 0;
     register u32 reg1 = regs[0];
@@ -241,11 +236,12 @@ int main(int argc, char *argv[]) //argv[1] = cpu_offset; argv[2]=cpu_count; argv
     char path[250];
     int nb_cpu, nb_step;
     u32 regs[3] = {0, 0, 0};
-    u32 reg0, reg1, reg2,a,b,c;
+    u32 reg0, reg1, reg2, a, b, c;
     tree = createTree();
     readName(name, tree);
     stringLength = 5; //fix str size fast recover
-    /* 
+
+    /* uncomment this section **
      stringLength = strlen(name);
      nb_step = atoi(argv[1]);
      nb_cpu = atoi(argv[2]);     
@@ -254,42 +250,45 @@ int main(int argc, char *argv[]) //argv[1] = cpu_offset; argv[2]=cpu_count; argv
      strcat(path, argv[1]); //add offset number
      fout = fopen(path, "w");
      */
+
+    //to comment
     nb_cpu = atoi("1");
     nb_step = atoi("0");
     fout = fopen("/home/peon/test", "w");
-    
+
     incrementTree(tree, nb_step);
 
-    
-    signed long long maxNodeValue = -1;
+
+
     u32 regSave0, regSave1, regSave2;
     char computedChar = 0;
     do {
-        signed long long newNodeValue = nodeValue(tree);
-        if (newNodeValue <= maxNodeValue) {
-            printf("fatal error, should not happen");
-        }
-        maxNodeValue = newNodeValue;
+        /*      signed long long maxNodeValue = -1;
+                signed long long newNodeValue;
+                newNodeValue = nodeValue(tree);
+                if (newNodeValue <= maxNodeValue) {
+                    printf("fatal error, should not happen");
+                }
+                maxNodeValue = newNodeValue;
+         */
         updateRegs(tree, regs);
         reg0 = regs[0];
         reg1 = regs[1];
         reg2 = regs[2];
         for (b = 0; b <= MASK2; b += 0x20000) {
-            
+
             regs[1] += 0x20000;
             regs[2] = reg2;
-                        
+
             for (c = 0; c <= MASK3; c += 0x20000) {
                 regs[2] = regs[2] + 0x20000;
                 computedChar = getCharFromIndexAndTree(regs);
-                globalCaseCounter++;
-                
+
                 if (computedChar != 0) {
                     regSave0 = regs[0];
                     regSave1 = regs[1];
                     regSave2 = regs[2];
-                    caseSolved++;
-                    if (stringLength > 2 && displayCaseFound) {
+                    if (displayCaseFound) {
                         printf("************************************************************\n");
                         printf("reg0=%lx;\nreg1=%lx;\nreg2=%lx;\n", regSave0, regSave1, regSave2);
                         printf("last character: %c,0x%x \n", computedChar, computedChar);
@@ -302,9 +301,9 @@ int main(int argc, char *argv[]) //argv[1] = cpu_offset; argv[2]=cpu_count; argv
                     fprintf(fout, "************************************************************\n\n");
                     fflush(fout);
                 }
-                
+
             }
-            
+
         }
         regs[0] = reg0;
     } while (incrementTree(tree, nb_cpu));
